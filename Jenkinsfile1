@@ -1,0 +1,37 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Check tag') {
+        steps {
+            script {
+                echo "Check current tag"
+                sh "git tag | tail -1 > currentTag"
+                String curtag = readFile('currentTag').trim()
+                echo "Check commit for last tag"
+                sh "git show -t $curtag | grep  commit | head -1 | awk '{print \$2}' > tagcomm"
+                String tagcomm = readFile('tagcomm').trim()
+                echo "Check last commit"
+                sh "git log --pretty=oneline | head  -1 | awk '{print \$1}' > curcomm"
+                String curcomm = readFile('curcomm').trim()
+
+
+                if (tagcomm != curcomm) {
+                    echo "Print current tag"
+                    echo curtag
+                    sh "cat currentTag | cut -c 2- > number"
+                    String number = readFile('number').trim()
+                    echo "Print number tag"
+                    sh "python -c 'print($number+0.1)' > newtag"
+                    String newtag = readFile('newtag').trim()
+                    sh "git tag -a v$newtag -m 'add tag v$newtag'"
+                    sh "git checkout -b  v$newtag-rc1"
+                    sh "git push --tag"
+                    sh "git push --all"
+                } else {
+                    echo 'Current tag commit == Current commit'
+                }
+        }
+      }
+    }
+  }
