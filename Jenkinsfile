@@ -6,7 +6,7 @@ pipeline {
             steps {
                 sh 'git config --global user.email "dkocheto@gmail.com"'
                 sh 'git config --global user.name   "nblade"'
-                sh 'git tag -a v0.1 -m "v0.1"'
+                sh 'git tag -d v0.1 -m "v0.1"'
             }
         }
         stage('Add branch'){
