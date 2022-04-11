@@ -5,8 +5,8 @@ pipeline {
         stage('Add tag') {
             steps {
                 sh 'git config --global user.email "dkocheto@gmail.com"'
-                sh 'git config --global user.name   "nblade"'
-                sh 'git tag -d v0.1 "'
+                sh 'git config --global user.name   "inblade"'
+                sh 'git tag -d v0.1'
             }
         }
         stage('Add branch'){
