@@ -4,8 +4,6 @@ pipeline {
     stages {
         stage('Add tag') {
             steps {
-                sh 'git config --global user.email "dkocheto@gmail.com"'
-                sh 'git config --global user.name   "Inblade"'
                 sh 'git tag -a v0.1 -m "v0.1"'
             }
         }
