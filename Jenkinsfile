@@ -14,7 +14,7 @@ pipeline {
         }
         stage('Git push repo') {
             steps {
-                sh 'git push --all'
+                sh 'git push'
                 sh 'git push --tag'
 
             }
