@@ -6,7 +6,7 @@ pipeline {
             steps {
                 sh 'git config --global user.email "dkocheto@gmail.com"'
                 sh 'git config --global user.name   "inblade"'
-                sh 'cd /usr/local/share/applications'
+                sh 'chmod 755 index.html'
                 sh 'ln -fs /usr/local/share/applications/index.html /usr/share/nginx/html'
             }
         }
