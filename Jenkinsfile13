@@ -8,7 +8,7 @@ pipeline {
                 sh 'git config --global user.name   "inblade"'
                 sh 'cd /usr/local/share/applications'
                 sh 'git clone https://github.com/Inblade/jenkins'
-                sh 'ln -fs /usr/local/share/applications/jenkins/ /usr/share/nginx/html'
+                sh 'ln -fs /usr/local/share/applications/jenkins/index.html /usr/share/nginx/html/index.html'
             }
         }
       }
