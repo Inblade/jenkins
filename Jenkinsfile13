@@ -1,0 +1,15 @@
+pipeline {
+    agent work1
+
+    stages {
+        stage('Cloning index.html') {
+            steps {
+                sh 'git config --global user.email "dkocheto@gmail.com"'
+                sh 'git config --global user.name   "inblade"'
+                sh 'cd /usr/local/share/applications'
+                sh 'git clone https://github.com/Inblade/jenkins'
+                sh 'ln -fs /usr/local/share/applications/jenkins/ /usr/share/nginx/html'
+            }
+        }
+      }
+    }
