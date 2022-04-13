@@ -18,7 +18,7 @@ pipeline {
                     } else {
                         echo "Changes found in the servicelayer module"
                     }
-         stage ('Build')
+         stage ('Build'){
              when {
             expression { return params.FORCE_BUILD || CONTINUE_BUILD }
         }
