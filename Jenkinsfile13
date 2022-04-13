@@ -4,7 +4,7 @@ pipeline {
         }
     triggers { pollSCM('* * * * *') }
     stages {
-        stage('Cloning index.html') {
+        stage('Check commit') {
             steps {
                 script {
                     //Using the git command to check the difference between previous successful commit. ${GIT_PREVIOUS_SUCCESSFUL_COMMIT} is an environment variable comes with GIT Jenkins plugin
@@ -18,6 +18,10 @@ pipeline {
                     } else {
                         echo "Changes found in the servicelayer module"
                     }
+         stage ('Build')
+             when {
+            expression { return params.FORCE_BUILD || CONTINUE_BUILD }
+        }
                 sh 'git config --global user.email "dkocheto@gmail.com"'
                 sh 'git config --global user.name   "inblade"'
                 sh 'chmod 755 index.html'
