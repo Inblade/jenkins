@@ -5,7 +5,7 @@ pipeline {
     triggers { pollSCM('* * * * *') }
     stages {
         stage('Check commit') {
-            steps {
+            
                 script {
                     //Using the git command to check the difference between previous successful commit. ${GIT_PREVIOUS_SUCCESSFUL_COMMIT} is an environment variable comes with GIT Jenkins plugin
                     //There is a drawback though, if it is the first time you are running this job, this variable is not available and fails the build
@@ -22,7 +22,7 @@ pipeline {
              when {
             expression { return params.FORCE_BUILD || CONTINUE_BUILD }
         }
-        steps {
+       
                 sh 'git config --global user.email "dkocheto@gmail.com"'
                 sh 'git config --global user.name   "inblade"'
                 sh 'chmod 755 index.html'
@@ -32,6 +32,4 @@ pipeline {
         }
       }
     }
-}
-}
 }
