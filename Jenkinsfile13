@@ -6,7 +6,7 @@ pipeline {
     stages {
         stage('Cloning index.html') {
             steps {
-                sh 'if ! git diff --name-only $TRAVIS_COMMIT_RANGE | grep -qvE '(*.md$)' 
+                sh 'if ! git diff --name-only $TRAVIS_COMMIT_RANGE | grep -qvE '(.md$)' 
                     then
                     echo "Only docs were updated, not running the CI."
                     exit
