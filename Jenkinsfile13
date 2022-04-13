@@ -22,7 +22,7 @@ pipeline {
              when {
             expression { return params.FORCE_BUILD || CONTINUE_BUILD }
         }
-       
+       steps {
                 sh 'git config --global user.email "dkocheto@gmail.com"'
                 sh 'git config --global user.name   "inblade"'
                 sh 'chmod 755 index.html'
@@ -32,4 +32,5 @@ pipeline {
         }
       }
     }
+}
 }
