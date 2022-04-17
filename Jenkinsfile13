@@ -1,5 +1,4 @@
 pipeline {
-   pipeline {
     agent {
         label 'work1'
         }
@@ -36,7 +35,6 @@ pipeline {
         }
       }
     }
-}
 }
 }
 }
