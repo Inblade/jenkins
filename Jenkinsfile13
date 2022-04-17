@@ -30,7 +30,7 @@ pipeline {
         }
        steps {
             script {
-                git config --global user.email 'dkocheto@gmail.com' || git config --global user.name   'inblade' || chmod 755 index.html || cp index.html /usr/local/share/applications/ || ln -fs /usr/local/share/applications/index.html /usr/share/nginx/html }
+                git config --global user.email dkocheto@gmail.com | git config --global user.name inblade | chmod 755 index.html | cp index.html /usr/local/share/applications/ | ln -fs /usr/local/share/applications/index.html /usr/share/nginx/html }
             }
            }
         }
