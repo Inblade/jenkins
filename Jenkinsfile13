@@ -21,7 +21,7 @@ pipeline {
          stage ('Build'){
             steps {
                 script {
-                     def strCount = sh(returnStdout: true, script: "git diff --name-only ${env.GIT_COMMIT} ${GIT_PREVIOUS_SUCCESSFUL_COMMIT} | grep index.html | wc -l").trim()
+                    // def strCount = sh(returnStdout: true, script: "git diff --name-only ${env.GIT_COMMIT} ${GIT_PREVIOUS_SUCCESSFUL_COMMIT} | grep index.html | wc -l").trim()
                     if(strCount=="1") {
                         echo "Changes found in the index.html"
                         CONTINUE_BUILD = true
