@@ -1,0 +1,49 @@
+pipeline {
+    agent{
+      label 'work1'
+    }
+      options { skipDefaultCheckout() }
+
+    stages {
+
+        stage('Git clone nodejs project') {
+            steps {
+                step([$class: 'WsCleanup'])
+                script {
+                echo "git clone nodejs"
+                sh "git clone https://github.com/nodejs/nodejs.org.git"
+                  }
+                }
+              }
+
+        stage('Build nodejs project') {
+            steps {
+              dir('nodejs.org') {
+                script {
+                sh "npm install"
+            }
+          }
+        }
+            post {
+                success {
+                    archiveArtifacts artifacts: 'nodejs.org/static/**', followSymlinks: false
+                }
+              }
+      }
+
+        stage("Deploy to server"){
+            steps{
+                sshagent(credentials: ['DeployUserKey']) {
+                    sh  '''
+                    ssh -tt -o StrictHostKeyChecking=no root@dkochetov1.devops.rebrain.srwx.net/ \
+                    "mkdir  /opt/static_$BUILD_NUMBER && \
+                    ln -snf /opt/static_$BUILD_NUMBER /usr/share/nginx/html/static
+                    exit"
+                    '''
+                    sh 'scp -rp nodejs.org/static/* root@dkochetov1.devops.rebrain.srwx.net:/opt/static_$BUILD_NUMBER'
+
+                }
+            }
+        }
+  }
+}
