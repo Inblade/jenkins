@@ -35,12 +35,12 @@ pipeline {
             steps{
                 sshagent(credentials: ['DeployUserKey']) {
                     sh  '''
-                    ssh -tt -o StrictHostKeyChecking=no root@dkochetov1.devops.rebrain.srwx.net/ \
+                    ssh -tt -o StrictHostKeyChecking=no root@dkochetov0.devops.rebrain.srwx.net/ \
                     "mkdir  /opt/static_$BUILD_NUMBER && \
                     ln -snf /opt/static_$BUILD_NUMBER /usr/share/nginx/html/static
                     exit"
                     '''
-                    sh 'scp -rp nodejs.org/static/* root@dkochetov1.devops.rebrain.srwx.net/:/opt/static_$BUILD_NUMBER'
+                    sh 'scp -rp nodejs.org/static/* root@dkochetov0.devops.rebrain.srwx.net/:/opt/static_$BUILD_NUMBER'
 
                 }
             }
