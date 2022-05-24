@@ -2,7 +2,9 @@
 def version = "${BUILD_NUMBER}"
 
 pipeline {
-    agent any
+    agent{
+      label 'work1'
+    }
     stages {
         stage('Git clone') {
            steps {
