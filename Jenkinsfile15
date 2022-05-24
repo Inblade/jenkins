@@ -19,17 +19,17 @@ pipeline {
                        
         stage('Copy static site') {
             steps {
-                sh "sudo mkdir -p /var/www/html/releases/${version}"
-                sh "sudo cp -rf ${workspace}/. /var/www/html/releases/${version}"
-                sh "sudo chown -R nginx:nginx /var/www/html/releases/${version}/*"
-                sh "sudo ln -sfT /var/www/html/releases/${version}/ /var/www/html/index-simlink"
+                sh "sudo mkdir -p /usr/local/share/applications/${version}"
+                sh "sudo cp -rf ${workspace}/. /usr/local/share/applications/${version}"
+                sh "sudo chown -R nginx:nginx /usr/local/share/applications/${version}/*"
+                sh "sudo ln -sfT /usr/local/share/applications/${version}/ /var/www/html/index-simlink"
            }
         }
         
         stage('Remove old versions\'s folders') {
            steps {
-                sh 'cd /var/www/html/releases/'
-                sh 'ls -dtr /var/www/html/releases/*/ | head -n -5 | sudo xargs -r rm -rf --'
+                sh 'cd /usr/local/share/applications/'
+                sh 'ls -dtr /usr/local/share/applications/*/ | head -n -5 | sudo xargs -r rm -rf --'
             }
         }
     } 
