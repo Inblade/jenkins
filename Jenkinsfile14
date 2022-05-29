@@ -40,7 +40,7 @@ pipeline {
                     ln -snf /opt/static_$BUILD_NUMBER /usr/share/nginx/html/static
                     exit"
                     '''
-                    sh 'scp -rp nodejs.org/static/* root@dkochetov0.devops.rebrain.srwx.net:/opt/static_$BUILD_NUMBER'
+                    sh 'scp -rp nodejs.org/static/* root@46.101.36.24:/opt/static_$BUILD_NUMBER'
 
                 }
             }
