@@ -26,7 +26,7 @@ pipeline {
         }
             post {
                 success {
-                    archiveArtifacts artifacts: 'nodejs.org/static/**', followSymlinks: false
+                    archiveArtifacts artifacts: 'nodejs.org/static/**', followSymlinks: true
                 }
               }
       }
