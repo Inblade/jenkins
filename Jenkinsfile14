@@ -35,7 +35,7 @@ pipeline {
             steps{
                 sshagent(credentials: ['DeployUserKey']) {
                     sh  '''
-                    ssh -tt -o StrictHostKeyChecking=yes root@138.68.137.218 \
+                    ssh -tt -o StrictHostKeyChecking=no root@138.68.137.218 \
                     "mkdir  /opt/static_$BUILD_NUMBER && \
                     ln -snf /opt/static_$BUILD_NUMBER /usr/share/nginx/html/static
                     exit"
